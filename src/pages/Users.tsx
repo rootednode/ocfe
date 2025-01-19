@@ -3,8 +3,7 @@ import Users from "../components/Users";
 import Admin from "../components/Admin";
 
 const Userpage = () => {
-  const isAdmin = localStorage.getItem("admin") === "1";
-
+	const isAdmin = localStorage.getItem("admin") === "1";
 
 	return (
 			<div className="container mt-5">
@@ -13,7 +12,6 @@ const Userpage = () => {
 			<Users />
 			</div>
 			</div>
-
 			);
 };
 

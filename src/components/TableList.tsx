@@ -24,7 +24,7 @@ const TableList  = (): React.ReactElement => {
 			}, [postStatus, dispatch, tables]);
 
 
-	const importModule = () => {
+	const importCSV = () => {
 
 		console.log('import');
 
@@ -49,6 +49,12 @@ const TableList  = (): React.ReactElement => {
 				await dispatch(imp({ file: file }));
 
 				toast.success("File uploaded successfully!");
+
+				// Refresh the page after the success message
+				setTimeout(() => {
+						window.location.reload();
+						}, 1500); // Delay for toast visibility
+
 			} catch (error) {
 				console.error("Error uploading file:", error);
 				toast.error("Failed to upload file!");
@@ -116,14 +122,14 @@ const TableList  = (): React.ReactElement => {
 								<span
 								className="btn btn-danger"
 								onClick={() => {
-								dispatch(remove(module.id));
+									dispatch(remove(module.id));
 								}}
-								>
-									Remove
-									</span>
-									</td>
-									</tr>
-									))}
+					>
+						Remove
+						</span>
+						</td>
+						</tr>
+						))}
 			</tbody>
 				</table>
 				</div>
@@ -134,32 +140,21 @@ const TableList  = (): React.ReactElement => {
 					)}
 
 
-
-			<div className="container mt-5">
-				<div className="row">
-				<div className="col-md-6 offset-md-3">
-
-
-				<input
+			<input
 				type="file"
 				id="fileInput"
 				onChange={handleFileChange}
-				style={{ display: "none" }}
+			style={{ display: "none" }}
 			/>
 
 				<button
 				className="btn btn-primary"
-				onClick={importModule}
+				onClick={importCSV}
 			>
 				Import CSV
 				</button>
-				<br/>
-				<br/>
 
 
-				</div>
-				</div>
-				</div>
 
 				<ToastContainer />
 
