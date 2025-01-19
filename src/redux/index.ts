@@ -4,7 +4,7 @@ import { createBrowserHistory } from "history";
 import rootReducer from "./root-reducer";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://10.254.0.6:8099/";
+axios.defaults.baseURL = "http://orgchaos.co:3001/";
 
 export const history = createBrowserHistory();
 

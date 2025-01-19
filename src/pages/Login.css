@@ -8,16 +8,16 @@
     height: 100vh;
 }
 
-form {
+.loginform {
     display: flex;
     flex-direction: column;
     width: 300px;
 }
 
-label {
+.label {
     margin-top: 10px;
 }
 
-button {
+.button {
     margin-top: 20px;
 }

@@ -8,6 +8,10 @@
   box-shadow: 0px 5px 17px 2px rgb(163, 161, 161);
 }
 
+.sjs-description {
+	width: 400px;
+}
+
 .sjs-surveys-list td {
   text-align: center;
 }

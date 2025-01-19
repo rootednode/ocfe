@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { failedAuth } from '../components/Auth';
 
 
 export interface ISurveyDefinition {
@@ -71,35 +71,56 @@ export const load = createAsyncThunk("surveys/load", async () => {
 			}
 		);
 
-
-
   console.log('get-all', response.data);
   return response.data;
 
 	} catch (error) {
 		console.log(error);
-//		if (error.response.status === 403)
-//		{
-		localStorage.removeItem('authToken');
-		localStorage.removeItem('admin');
-//		}	
+		failedAuth();
+		//localStorage.removeItem('authToken');
+		//localStorage.removeItem('admin');
+		//window.location.reload();
+		//return {};
 	}
-
-
-
- 
 
 });
 
+export const getraw = createAsyncThunk("surveys/get", async (id: string) => {
+	const token = localStorage.getItem('authToken');
+	try {
+	  const response = await axios.get(`api/collection/get-one-raw/${id}`, {
+	  	headers: {
+				'Authorization': '' + token
+	  	}
+			}
+		);
+  	return response.data;
+
+	} catch (error) {
+		console.log(error);
+		failedAuth();
+	}
+
+});
+
+
+
 export const get = createAsyncThunk("surveys/get", async (id: string) => {
 	const token = localStorage.getItem('authToken');
-  const response = await axios.get(`api/collection/get-one/${id}`, {
-  	headers: {
-			'Authorization': '' + token
-  	}
+	try {
+	  const response = await axios.get(`api/collection/get-one/${id}`, {
+	  	headers: {
+				'Authorization': '' + token
+	  	}
+			}
+		);
+  	return response.data;
+
+	} catch (error) {
+		console.log(error);
+		failedAuth();
 	}
-);
-  return response.data;
+
 });
 
 export const create = createAsyncThunk(
@@ -144,6 +165,9 @@ export const remove = createAsyncThunk("surveys/delete", async (id: string) => {
 });
 
 export const update = createAsyncThunk("surveys/update", async ({ id, content }: { id: string; content: any }) => {
+
+	console.log(content);
+
 	const token = localStorage.getItem('authToken');
     const response = await axios.put(`api/collection/update/${id}`, content, {
       headers: {

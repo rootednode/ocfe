@@ -67,7 +67,6 @@ const Run = () => {
         <>
           {survey ? (
             <div>
-              <h1>{survey.title}</h1>
               <p style={{ paddingLeft: "1.5rem" }}>{survey.description}</p>
             </div>
           ) : (

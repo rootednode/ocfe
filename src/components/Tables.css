@@ -1,0 +1,43 @@
+/* Table container styling */
+.table-container {
+  margin: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table styling */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  text-align: left;
+}
+
+/* Header styling */
+.table thead {
+  background-color: #4caf50;
+  color: white;
+}
+
+.table th {
+  padding: 12px 15px;
+}
+
+/* Row styling */
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+/* Hover effect */
+.table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+

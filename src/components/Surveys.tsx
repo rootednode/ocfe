@@ -3,6 +3,8 @@ import { create, load, remove } from "../redux/surveys";
 import { useReduxDispatch, useReduxSelector } from "../redux";
 import { Link } from "react-router-dom";
 import "./Surveys.css";
+import "./Tables.css";
+
 const Surveys = (): React.ReactElement => {
   const surveys = useReduxSelector((state) => state.surveys.surveys);
   const dispatch = useReduxDispatch();
@@ -15,42 +17,31 @@ const Surveys = (): React.ReactElement => {
     }
   }, [postStatus, dispatch, surveys]);
 
-  const createSurvey = () => {
-    dispatch(
-      create({
-        newSurveyTitle,
-        newSurveyDescription,
-      })
-    ).then(() => {
-      setNewSurveyTitle("");
-      setNewSurveyDescription("");
-    });
-
-  }
 
   return (
     <>
       {surveys.length ? (
-        <table className="sjs-surveys-list">
+    		<div className="table-responsive">
+	      <table className="table table-bordered table-striped">
           <thead>
-            <tr style={{ backgroundColor: "grey" }}>
+          	<tr className="bg-secondary text-white text-center">
               <th>Title</th>
               <th colSpan={2}>Action</th>
             </tr>
           </thead>
           <tbody>
             {surveys.map((survey, index) => (
-              <tr key={index} className="sjs-surveys-list__row">
+          		<tr key={index} className="bg-secondary text-white text-center">
                 <td>
                   <span>{survey.title}</span>
                 </td>
                 <td>
-                  <Link className="sjs-button" to={"run/" + survey.id}>
+                  <Link className="btn btn-primary" to={"run/" + survey.id}>
                     <span>Run</span>
                   </Link>
                 </td>
                 <td>
-                  <Link className="sjs-button" to={"result/" + survey.id}>
+                  <Link className="btn btn-primary" to={"result/" + survey.id}>
                     <span>Result</span>
                   </Link>
                 </td>
@@ -59,6 +50,7 @@ const Surveys = (): React.ReactElement => {
             ))}
           </tbody>
         </table>
+				</div>
       ) : (
         <div>
           <h3>No surveys. Please add your survey</h3>

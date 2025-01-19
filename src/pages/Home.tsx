@@ -3,16 +3,13 @@ import Surveys from "../components/Surveys";
 import Admin from "../components/Admin";
 
 const Home = () => {
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  useEffect(() => {
-    const adminStatus = localStorage.getItem("admin");
-    setIsAdmin(adminStatus === "1");
-  }, []);
+  const isAdmin = localStorage.getItem("admin") === "1";
 
   return (
-    <div className="sjs-client-app__content--surveys-list">
-      <h1 style={{ textAlign: "center" }}>{isAdmin ? "Admin Dashboard" : "Surveys"}</h1>
+
+			<div className="container mt-5">
+			<h1 className="text-center">{isAdmin ? "Forms" : "Types"}</h1>
+
 
       {isAdmin ? (
         <div>

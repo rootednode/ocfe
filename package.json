@@ -14,10 +14,19 @@
     "@types/react-router": "^5.1.18",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^0.26.1",
+    "body-parser": "^1.20.3",
+    "bootstrap": "^5.3.3",
     "connected-react-router": "6.9.3",
+    "csv-parse": "^5.6.0",
+    "express": "^4.21.2",
     "history": "5.3.0",
+    "jquery": "^3.7.1",
+    "mysql2": "^3.12.0",
+    "node-sass": "^7.0.3",
+    "papaparse": "^5.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-modal": "^3.16.1",
     "react-redux": "^7.2.8",
     "react-router": "6.3.0",
     "react-router-dom": "6.3.0",
@@ -30,6 +39,12 @@
     "survey-react-ui": "latest",
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/react-dom": "^18.2.25",
+    "@types/react-modal": "^3.16.3",
+    "msw": "^0.39.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -57,11 +72,6 @@
   },
   "msw": {
     "workerDirectory": "public"
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@types/react-dom": "^18.2.25",
-    "msw": "^0.39.2"
   },
   "overrides": {
     "connected-react-router": {

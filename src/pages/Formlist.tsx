@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router";
-import View from "../components/View";
+import Formlist from "../components/Formlist";
 import EditResult from "../components/EditResult";
 const Result = () => {
   const { id } = useParams();
@@ -27,7 +27,7 @@ const Result = () => {
         {isEditMode ? (
           <EditResult id={id} onCancel={handleCancelClick} />
         ) : (
-          <View id={id} />
+          <Formlist id={id} />
         )}
       </div>
     </>
