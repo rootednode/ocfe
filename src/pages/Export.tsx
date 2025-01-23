@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router";
-import View from "../components/View";
+import Export from "../components/Export";
 const Result = () => {
   const { id } = useParams();
   if (!id) {
@@ -12,7 +12,7 @@ const Result = () => {
       <div className="position-end">
       </div>
       <div className="sjs-results-container">
-          <View id={id} />
+          <Export id={id} />
       </div>
       </div>
   );

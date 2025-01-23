@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { create, load, remove } from "../redux/users";
+import { create, updatePassword, load, remove } from "../redux/users";
 import { useReduxDispatch, useReduxSelector } from "../redux";
 import { Link } from "react-router-dom";
 
 import {Slide, toast,ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import CustomModal from './SetPasswordModal';
-
 import "./Surveys.css";
 import "./Tables.css";
-
-
 
 
 const Users = (): React.ReactElement => {
@@ -33,21 +29,31 @@ const Users = (): React.ReactElement => {
 
 
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalContent, setModalContent] = useState<string>('');
 
-  const openModalWithContent = (content: string) => {
-    setModalContent(content);
-    setModalIsOpen(true);
+  const [passwords, setPasswords] = useState<{ [key: string]: string }>({});
+
+  const handlePasswordChange = (id: string, value: string) => {
+    setPasswords((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
   };
 
-  const closeModal = () => {
-    setModalIsOpen(false);
+  const changePassword = (id: string, password: string) => {
+    if (!password) {
+      alert("Password cannot be empty!");
+      return;
+    }
+
+    //console.log(`Changing password for user ID ${id}: ${password}`);
+    dispatch(updatePassword({ id, password }));
+
+    // Reset password after change
+    setPasswords((prev) => ({
+      ...prev,
+      [id]: "",
+    }));
   };
-
-
-
-
 
 
 
@@ -66,8 +72,6 @@ const Users = (): React.ReactElement => {
     } finally {
 			toast.success('User added successfully!');
     }
-
-
   }
 
 
@@ -80,23 +84,34 @@ const Users = (): React.ReactElement => {
           <tr className="bg-secondary text-white text-center">
             <th>ID</th>
             <th>Username</th>
+            <th>Password</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
+
           {users.map((user, index) => (
             <tr key={index}>
               <td>{user.id}</td>
               <td>{user.username}</td>
               <td>
-                <button
-                  className="btn btn-primary me-3"
-									onClick={() => openModalWithContent(user.id)}
-                >
-                  Set Password
-                </button>
-
-
+							
+                  <input
+                    type="password"
+                    className="form-control me-2"
+                    placeholder="Enter password"
+                    value={passwords[user.id] || ""}
+                    onChange={(e) => handlePasswordChange(user.id, e.target.value)}
+                  />
+                  <button
+                    className="btn btn-primary me-3"
+                    onClick={() => changePassword(user.id, passwords[user.id])}
+                  >
+                    Set Password
+                  </button>
+              </td>
+              <td>
+	
                 <button
                   className="btn btn-danger"
                   onClick={() => {
@@ -114,8 +129,6 @@ const Users = (): React.ReactElement => {
   ) : (
     <div>No users available</div>
   )}
-
-
 
 <div className="container mt-5">
   <div className="row">
@@ -170,16 +183,6 @@ const Users = (): React.ReactElement => {
 </div>
 
 <ToastContainer />
-
-      <button onClick={() => openModalWithContent('1')}>1</button>
-      <button onClick={() => openModalWithContent('2')}>2</button>
-
-      <CustomModal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        content={modalContent}
-      />
-
 
     </>
   );

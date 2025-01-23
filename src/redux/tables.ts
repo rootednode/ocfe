@@ -120,6 +120,29 @@ export const load = createAsyncThunk("tables/load", async () => {
 
 });
 
+
+export const exp = createAsyncThunk("modules/exp", async (name: string) => {
+		console.log('exp');
+	const token = localStorage.getItem('authToken');
+	try {
+		const response = await axios.get(`api/tables/export/${name}`, {
+			headers: {
+				'Authorization': '' + token
+			}
+		}
+																		);
+
+		console.log('exp', response.data);
+
+																		return response.data;
+	} catch (error) {
+		console.log(error);
+//		failedAuth();
+	}
+});
+
+
+
 export const get = createAsyncThunk("modules/get", async (id: string) => {
 	const token = localStorage.getItem('authToken');
 	try {
@@ -188,9 +211,9 @@ export const create = createAsyncThunk(
 );
 
 
-export const remove = createAsyncThunk("modules/delete", async (id: string) => {
+export const remove = createAsyncThunk("modules/delete", async (name: string) => {
 	const token = localStorage.getItem('authToken');
-	const response = await axios.delete(`api/tables/delete-one/${id}`, {
+	const response = await axios.delete(`api/tables/delete-one/${name}`, {
 		headers: {
 			'Authorization': '' + token
 		}		

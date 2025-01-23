@@ -53,7 +53,7 @@ const TableList  = (): React.ReactElement => {
 				// Refresh the page after the success message
 				setTimeout(() => {
 						window.location.reload();
-						}, 1500); // Delay for toast visibility
+						}, 500); // Delay for toast visibility
 
 			} catch (error) {
 				console.error("Error uploading file:", error);
@@ -98,31 +98,28 @@ const TableList  = (): React.ReactElement => {
 					</tr>
 					</thead>
 					<tbody>
-					{tables.map((module, index) => (
+					{tables.map((table, index) => (
 								<tr key={index} className="bg-secondary text-white text-center">
 								<td>
-								<span>{module.id}</span>
+								<span>{table.id}</span>
 								</td>
 								<td>
-								<span>{module.tableName}</span>
+								<span>{table.tableName}</span>
 								</td>
 								<td>
-								<span>{module.createdAt}</span>
+								<span>{table.createdAt}</span>
 								</td>
 								<td>
-								<Link className="btn btn-primary me-1" to={"/Tables/View/" + module.id}>
+								<Link className="btn btn-primary me-2" to={"/Tables/View/" + table.id}>
 								<span>View</span>
 								</Link>
-								<Link className="btn btn-primary me-1" to={"/editm/" + module.id}>
-								<span>Edit</span>
-								</Link>
-								<Link className="btn btn-primary me-3" to={"/exportm/" + module.id}>
+								<Link className="btn btn-info me-3" to={"/Tables/Export/" + table.id}>
 								<span>Export</span>
 								</Link>
 								<span
 								className="btn btn-danger"
 								onClick={() => {
-									dispatch(remove(module.id));
+									dispatch(remove(table.tableName));
 								}}
 					>
 						Remove

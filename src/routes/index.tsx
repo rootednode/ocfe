@@ -8,6 +8,7 @@ import Tables from "../pages/Tables";
 import Users from "../pages/Users";
 import Run from "../pages/Run";
 import View from "../pages/View";
+import Export from "../pages/Export";
 import Edit from "../pages/Edit";
 import Formlist from "../pages/Formlist";
 import Form from "../pages/Form";
@@ -41,18 +42,10 @@ export const NavBar = () => {
 
 	return (
 
-
 	<nav className="navbar navbar-expand-lg navbar-light bg-body-tertiary">
   <div className="container-fluid">
 
-
-
-
-
-
-
 	{isAuthenticated() ? (
-
 
 <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <div className="container-fluid">
@@ -197,6 +190,7 @@ const NoMatch = () => (
 const ProtectedHome = withAuth(Home);
 const ProtectedTables = withAuth(Tables);
 const ProtectedView = withAuth(View);
+const ProtectedExport = withAuth(Export);
 const ProtectedUsers = withAuth(Users);
 const ProtectedRun = withAuth(Run);
 const ProtectedEdit = withAuth(Edit);
@@ -216,6 +210,7 @@ const Content: React.FC = (): React.ReactElement => (
       <Route path="/" element={<ProtectedHome />} />
       <Route path="/Tables" element={<ProtectedTables />} />
       <Route path="/Tables/View/:id" element={<ProtectedView />} />
+      <Route path="/Tables/Export/:id" element={<ProtectedExport />} />
       <Route path="/Users" element={<ProtectedUsers />} />
       <Route path="/run/:id" element={<ProtectedRun />} />
       <Route path="/edit/:id" element={<ProtectedEdit />} />

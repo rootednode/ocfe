@@ -93,6 +93,39 @@ export const get = createAsyncThunk("users/get", async (id: string) => {
   return response.data;
 });
 
+
+
+export const updatePassword = createAsyncThunk(
+  "users/updatePassword",
+  async ({
+  	id,
+    password,
+  }: {
+    id: string;
+    password: string;
+  }) => {
+    const token = localStorage.getItem("authToken");
+    const updateData = {
+      id: id,
+      password: password,
+    };
+
+    const response = await axios.post(
+      `/api/users/updatePassword`,
+      updateData,
+      {
+        headers: {
+					'Authorization': '' + token
+        },
+      }
+    );
+
+    return response.data;
+  }
+);
+
+
+
 export const create = createAsyncThunk(
   "users/create",
   async ({

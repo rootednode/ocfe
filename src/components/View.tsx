@@ -49,7 +49,7 @@ const View = (params: { id: string }): React.ReactElement => {
 
   return (
       <div>
-      <h1>View {tableName}</h1>
+      <h1>Tables - {tableName}</h1>
       {tableName ? (
         <div><TableView tableName={tableName} /></div>
       ) : (

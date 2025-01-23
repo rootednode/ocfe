@@ -17,7 +17,7 @@ const Result = () => {
   };
 
   return (
-    <>
+			<div className="container mt-5">
       <div className="position-end">
         <button className="sjs-button sjs-add-btn" onClick={handleEditClick}>
           {isEditMode ? "Cancel Editing" : "Edit Result"}
@@ -30,7 +30,7 @@ const Result = () => {
           <Formlist id={id} />
         )}
       </div>
-    </>
+      </div>
   );
 };
 
